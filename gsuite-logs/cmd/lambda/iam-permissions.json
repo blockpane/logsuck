@@ -1,0 +1,30 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AccessResources",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:PutParameter",
+        "s3:PutObject",
+        "s3:GetObject",
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "ssm:GetParameter"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bucket-here/gsuite-logs/*",
+        "arn:aws:kms:us-east-1:111111111111:key/alias/aws/s3",
+        "arn:aws:kms:us-east-1:111111111111:key/alias/aws/ssm",
+        "arn:aws:ssm:us-east-1:111111111111:parameter/gsuite-logs-token",
+        "arn:aws:ssm:us-east-1:111111111111:parameter/gsuite-logs-config"
+      ]
+    },
+    {
+      "Sid": "FindParams",
+      "Effect": "Allow",
+      "Action": "ssm:DescribeParameters",
+      "Resource": "*"
+    }
+  ]
+}
